@@ -121,6 +121,8 @@ export class Settings extends ModuleSettingsAbstract {
     // ----- NOTE: Pathfinding ----- //
 
     register(KEYS.CONTROLS.PATHFINDING, {
+      name: 'Use Pathfinding',
+      hint: '',
       scope: "user",
       config: true,
       default: false,

@@ -205,16 +205,17 @@ Hooks.once("devModeReady", ({ registerPackageDebugFlag }) => {
 
 
 // Add pathfinding button to token controls.
-const PATHFINDING_CONTROL = {
+/* const PATHFINDING_CONTROL = {
   name: Settings.KEYS.CONTROLS.PATHFINDING,
   title: `${MODULE_ID}.controls.${Settings.KEYS.CONTROLS.PATHFINDING}.name`,
   icon: "fa-solid fa-route",
   toggle: true
 };
+*/
 
 // Render the pathfinding control.
 // Render the prefer token control if that setting is enabled.
-Hooks.on("getSceneControlButtons", controls => {
+/* Hooks.on("getSceneControlButtons", controls => {
   if ( !canvas.scene ) return;
   const tokenTools = controls.find(c => c.name === "token");
   tokenTools.tools.push(PATHFINDING_CONTROL);
@@ -232,13 +233,13 @@ Hooks.on("renderSceneControls", async function(controls, _html, _data) {
   const toggle = controls.control.tools.find(t => t.name === Settings.KEYS.CONTROLS.PATHFINDING);
   if ( toggle ) await Settings.set(Settings.KEYS.CONTROLS.PATHFINDING, toggle.active);
 });
+*/
 
 function updatePathfindingControl(enable) {
-  enable ??= Settings.get(Settings.KEYS.CONTROLS.PATHFINDING);
+  enable ??= false;
   const tokenTools = ui.controls.controls.find(c => c.name === "token");
   const index = tokenTools.tools.findIndex(b => b.name === Settings.KEYS.CONTROLS.PATHFINDING);
   if ( !~index ) tokenTools.tools.push(PATHFINDING_CONTROL);
-  PATHFINDING_CONTROL.active = Settings.get(Settings.KEYS.CONTROLS.PATHFINDING);
+  PATHFINDING_CONTROL.active = false;
   // Do in the hook instead to avoid repetition: ui.controls.render(true);
 }
-
